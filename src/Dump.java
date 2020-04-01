@@ -1,4 +1,4 @@
-package util;
+
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -53,7 +53,6 @@ public class Dump {
     }
 
     public static void main(String[] args) throws IOException {
-        System.out.println("encoding=" + System.getProperty("file.encoding"));
         switch (args.length) {
         case 0:
             dump(System.in);
@@ -64,7 +63,7 @@ public class Dump {
             }
             break;
         default:
-            throw new IllegalArgumentException("Usage: java util.Dump [INFILE]");
+            throw new IllegalArgumentException("Usage: java Dump [INFILE]");
         }
     }
 
