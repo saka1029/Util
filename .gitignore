@@ -1,0 +1,7 @@
+*.log
+*.bak
+*.swp
+*~
+bin/
+lib/
+/bin
