@@ -16,7 +16,7 @@ public class Srt {
 
     public static void main(String[] args) throws IOException {
         if (args.length != 6) usage();
-        String encoding = "UTF-8";
+        String encoding = System.getProperty("file.encoding");
         File in = new File(args[0]);
         if (!in.exists())
             throw new IOException("ファイルがありません: " + in);
