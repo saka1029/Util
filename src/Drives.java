@@ -24,7 +24,7 @@ import util.io.WindowsTreeReader;
  */
 public class Drives {
 
-    static final File TOP_DIRECTORY = new File("D:/git.backup/drives");
+    static final File TOP_DIRECTORY = new File("/git.backup/drives");
 
     enum Target {
         FILE, DIRECTORY, ANY;
