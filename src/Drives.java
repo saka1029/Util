@@ -10,7 +10,7 @@ import util.io.WindowsTreeEntry;
 import util.io.WindowsTreeReader;
 
 /**
- * ドライブごとのtreeコマンド実行結果（D:/drivesにあるファイル）
+ * ドライブごとのtreeコマンド実行結果（/drivesにあるファイル）
  * についてgrepします。
  * usage:
  * util drive [-f|-d|-a] 検索文字列
@@ -24,7 +24,7 @@ import util.io.WindowsTreeReader;
  */
 public class Drives {
 
-    static final File TOP_DIRECTORY = new File("D:/git.backup/drives");
+    static final File TOP_DIRECTORY = new File("/git.backup/drives");
 
     enum Target {
         FILE, DIRECTORY, ANY;
