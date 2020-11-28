@@ -13,7 +13,7 @@ import util.io.WindowsTreeReader;
  * ドライブごとのtreeコマンド実行結果（D:/drivesにあるファイル）
  * についてgrepします。
  * usage:
- * util drive [-f|-d|-a] 検索文字列
+ * java Drives [-f|-d|-a] 検索文字列
  * -f ファイルのみ検索
  * -d ファイルのみ検索
  * -a すべてを検索
@@ -77,7 +77,7 @@ public class Drives {
     }
 
     static void usage() {
-        throw new IllegalArgumentException("Usage: drive [-a|-f|-d] PATTERN");
+        throw new IllegalArgumentException("Usage: java Drives [-a|-f|-d] PATTERN");
     }
 
     public static void main(String[] args) throws IOException {
