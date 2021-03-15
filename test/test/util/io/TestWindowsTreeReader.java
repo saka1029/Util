@@ -16,7 +16,7 @@ public class TestWindowsTreeReader {
 
     @Test
     public void testRead() throws IOException {
-        File file = new File("D:/drives/TOSHIBA_EXT.txt");
+        File file = new File("D:/git.backup/drives/TOSHIBA_EXT.txt");
         try (FileReader fr = new FileReader(file, WindowsTreeReader.DEFAULT_CHARSET);
             WindowsTreeReader reader = new WindowsTreeReader(fr);
             PrintWriter w = new PrintWriter(new FileWriter(file.getName() + ".debug"))) {
@@ -24,9 +24,7 @@ public class TestWindowsTreeReader {
                 WindowsTreeEntry e = reader.read();
                 if (e == null) break;
                 w.println(e);
-//                System.out.println(e);
             }
-
         }
 
     }
