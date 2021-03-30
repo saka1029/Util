@@ -13,6 +13,8 @@ import java.util.Map.Entry;
 
 import org.junit.Test;
 
+import util.simplejson.Json;
+
 public class TestJson {
 
     @Test
@@ -148,5 +150,34 @@ public class TestJson {
             "s0", "string",
             "b0", true);
         System.out.println(format(built));
+    }
+
+    @Test
+    public void testArray2() {
+        String j = "[\r\n"
+            + "    {\r\n"
+            + "        \"place_id\": \"19414019\",\r\n"
+            + "        \"licence\": \"https:\\/\\/locationiq.com\\/attribution\",\r\n"
+            + "        \"osm_type\": \"node\",\r\n"
+            + "        \"osm_id\": \"1830231415\",\r\n"
+            + "        \"boundingbox\": [\r\n"
+            + "            \"34.0780031\",\r\n"
+            + "            \"34.1180031\",\r\n"
+            + "            \"-118.349523\",\r\n"
+            + "            \"-118.309523\"\r\n"
+            + "        ],\r\n"
+            + "        \"lat\": \"34.0980031\",\r\n"
+            + "        \"lon\": \"-118.329523\",\r\n"
+            + "        \"display_name\": \"Hollywood, Los Angeles, Los Angeles County, Kalifornien, 90028, Vereinigte Staaten von Amerika\",\r\n"
+            + "        \"class\": \"place\",\r\n"
+            + "        \"type\": \"suburb\",\r\n"
+            + "        \"importance\": 0.796974175739209,\r\n"
+            + "        \"icon\": \"https:\\/\\/locationiq.org\\/static\\/images\\/mapicons\\/poi_place_village.p.20.png\"\r\n"
+            + "    },\r\n"
+            + "]";
+        Object parsed = parse(j);
+        System.out.println(parsed);
+        double lat = Double.parseDouble(Json.get(parsed, "0.lat").toString());
+        assertEquals(34.0980031, lat, 0.000005);
     }
 }
