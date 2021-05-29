@@ -11,6 +11,17 @@ import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
 import com.itextpdf.layout.element.Image;
 
+/**
+ * 指定したディレクトリの下に拡張子
+ * .png, .jpg, .jpegのイメージファイルがあったら、
+ * それらをまとめて単一のPDFファイルに出力する。
+ * 出力するファイル名は「ディレクトリのパス名.pdf」とする。
+ * ディレクトリの下にディレクトリがある場合は
+ * 再帰的に処理する。
+ *
+ * [使い方]
+ * java Pdf ディレクトリ
+ */
 public class Pdf {
 
     static final String USAGE = "java Pdf DIRECTORY";
