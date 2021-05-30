@@ -9,7 +9,9 @@ import com.itextpdf.kernel.geom.Rectangle;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.AreaBreak;
 import com.itextpdf.layout.element.Image;
+import com.itextpdf.layout.property.AreaBreakType;
 
 /**
  * 指定したディレクトリの下に拡張子
@@ -19,8 +21,10 @@ import com.itextpdf.layout.element.Image;
  * ディレクトリの下にディレクトリがある場合は
  * 再帰的に処理する。
  *
+ * <pre>
  * [使い方]
  * java Pdf ディレクトリ
+ * </pre>
  */
 public class Pdf {
 
@@ -28,13 +32,20 @@ public class Pdf {
     static final FileFilter IS_DIRECTORY = f -> f.isDirectory();
     static final FileFilter IS_IMAGE_FILE = f -> f.isFile()
         && f.getName().matches("(?i).*\\.(png|jpg|jpeg)$");
+    static final AreaBreak NEXT_PAGE = new AreaBreak(AreaBreakType.NEXT_PAGE);
 
     static void printPdf(File outFile, File[] imageFiles) throws FileNotFoundException, MalformedURLException {
         PdfDocument pdf = new PdfDocument(new PdfWriter(outFile));
         Rectangle rect = pdf.getDefaultPageSize();
         try (Document document = new Document(pdf, PageSize.A4)) {
             document.setMargins(0, 0, 0, 0);
+            boolean first = true;
             for (File imageFile : imageFiles) {
+                // 改ページする。これがないと横長のイメージが連続したとき１ページにまとめられる。
+                if (first)
+                    first = false;
+                else
+                    document.add(NEXT_PAGE);
                 Image image = new Image(ImageDataFactory.create(imageFile.toString()));
                 float wScale = rect.getWidth() / image.getImageWidth();
                 float hScale = rect.getHeight() / image.getImageHeight();
