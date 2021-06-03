@@ -5,10 +5,26 @@ import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 
+/**
+ * 階層の深い位置にあるファイルを最上位にコピーします。
+ * <pre>
+ * directory/
+ *   +--- sub1/
+ *   |     +--- f0.jpg
+ *   |     +--- f1.jpg
+ *   +--- sub2/
+ *   |     +--- sub3/
+ *   |           +--- f0.png
+ *   +--- 000000.jpg              (directory/sub1/f0.jpgのコピー)
+ *   +--- 000001.jpg              (directory/sub1/f2.jpgのコピー)
+ *   +--- 000002.png              (directory/sub2/sub3/f0.pngのコピー)
+ * </pre>
+ * ファイル名はコピー順に6桁の連番とします。
+ * 拡張子は同じものとします。
+ */
 public class Flat {
 
     static final String USAGE = "java Flat DIRECTORY";
-
 
     public static void main(String[] args) throws IOException {
         if (args.length != 1)
